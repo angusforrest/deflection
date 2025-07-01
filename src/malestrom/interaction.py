@@ -37,7 +37,7 @@ def close_distance(
         dds.extend(dd)
         iis.extend(ii)
     if include_gmcs:
-        return np.array(dds).flat(), np.array(iis).flat()
+        return np.array(dds), np.array(iis)
     else:
         return np.array(dds)
 

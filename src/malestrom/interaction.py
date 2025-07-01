@@ -27,9 +27,9 @@ def close_distance(
     dds = list()
     iis = list()
     for i in range(timesteps):
-        tree = KDTree(gmc_positions[i * n : (i + 1) * n])
+        tree = KDTree(gmc_positions[i * n : (i + 1) * n, :])
         dd, ii = tree.query(
-            iso_positions[i * n : (i + 1) * n],
+            iso_positions[i * n : (i + 1) * n, :],
             num_distances,
             distance_upper_bound=upper_bound,
             workers=-1 if multiprocessing else 1,

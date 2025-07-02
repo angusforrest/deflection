@@ -23,13 +23,13 @@ def close_distance(
         raise Exception("Did not provide iso position list with shape (,3)")
     if gmc_positions.shape[1] != 3:
         raise Exception("Did not provide gmc position list with shape (,3)")
-    n = int(gmc_positions.shape[0] / timesteps)
     dds = list()
     iis = list()
-    ips = np.split(iso_positions, n, axis=0)
-    gps = np.split(gmc_positions, n, axis=0)
+    ips = np.split(iso_positions, timesteps, axis=0)
+    gps = np.split(gmc_positions, timesteps, axis=0)
     for ip, gp in zip(ips, gps):
         tree = KDTree(gp)
+        print(len(ip))
         dd, ii = tree.query(
             ip,
             num_distances,

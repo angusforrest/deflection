@@ -1,6 +1,6 @@
 [project]
 name = "malestrom"
-version = "0.1.6"
+version = "0.1.7"
 description = "interstellar object tidal stream simulator and tooling"
 readme = "README.md"
 authors = [

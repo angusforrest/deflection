@@ -14,7 +14,7 @@ def close_distance(
     iso_positions: np.ndarray,
     gmc_positions: np.ndarray,
     timesteps: Annotated[int, Ge(1)],
-    include_gmcs: Literal[True],
+    include_gmcs: Literal[True] = True,
     num_distances: Annotated[int, Ge(1)] = 1,
     upper_bound: Annotated[float, Ge(1)] = 1,
     multiprocessing: bool = True,

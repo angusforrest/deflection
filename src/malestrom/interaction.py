@@ -1,9 +1,38 @@
 import numpy as np
-import pandas as pd
+
 from scipy.spatial import KDTree
-import astropy.units as u
-from typing import Literal
-from annotated_types import Annotated, Ge
+
+from typing import Literal, overload
+from annotated_types import Annotated, Union, Ge
+
+# import pandas as pd
+# import astropy.units as u
+
+
+@overload
+def close_distance(
+    iso_positions: np.ndarray,
+    gmc_positions: np.ndarray,
+    timesteps: Annotated[int, Ge(1)],
+    include_gmcs: Literal[True],
+    num_distances: Annotated[int, Ge(1)] = 1,
+    upper_bound: Annotated[float, Ge(1)] = 1,
+    multiprocessing: bool = True,
+) -> tuple[np.ndarray, np.ndarray]:
+    pass
+
+
+@overload
+def close_distance(
+    iso_positions: np.ndarray,
+    gmc_positions: np.ndarray,
+    timesteps: Annotated[int, Ge(1)],
+    include_gmcs: Literal[False],
+    num_distances: Annotated[int, Ge(1)] = 1,
+    upper_bound: Annotated[float, Ge(1)] = 1,
+    multiprocessing: bool = True,
+) -> np.ndarray:
+    pass
 
 
 def close_distance(
@@ -14,7 +43,7 @@ def close_distance(
     num_distances: Annotated[int, Ge(1)] = 1,
     upper_bound: Annotated[float, Ge(1)] = 1,
     multiprocessing: bool = True,
-):
+) -> Union[tuple[np.darray, np.darray], np.darray]:
     """
     :param iso_positions:
     :param gmc_positions:

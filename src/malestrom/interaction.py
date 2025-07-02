@@ -29,7 +29,6 @@ def close_distance(
     gps = np.split(gmc_positions, timesteps, axis=0)
     for ip, gp in zip(ips, gps):
         tree = KDTree(gp)
-        print(len(ip))
         dd, ii = tree.query(
             ip,
             num_distances,

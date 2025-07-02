@@ -26,10 +26,12 @@ def close_distance(
     n = int(gmc_positions.shape[0] / timesteps)
     dds = list()
     iis = list()
-    for i in range(timesteps):
-        tree = KDTree(gmc_positions[i * n : (i + 1) * n + 1, :])
+    ips = np.split(iso_positions, n, axis=0)
+    gps = np.split(gmc_positions, n, axis=0)
+    for ip, gp in zip(ips, gps):
+        tree = KDTree(gp)
         dd, ii = tree.query(
-            iso_positions[i * n : (i + 1) * n + 1, :],
+            ip,
             num_distances,
             distance_upper_bound=upper_bound,
             workers=-1 if multiprocessing else 1,

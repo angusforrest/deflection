@@ -43,7 +43,7 @@ def close_distance(
     num_distances: Annotated[int, Ge(1)] = 1,
     upper_bound: Annotated[float, Ge(1)] = 1,
     multiprocessing: bool = True,
-) -> Union[tuple[np.darray, np.darray], np.darray]:
+) -> Union[tuple[np.ndarray, np.ndarray], np.ndarray]:
     """
     :param iso_positions:
     :param gmc_positions:

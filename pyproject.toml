@@ -1,5 +1,5 @@
 [project]
-name = "malestrom"
+name = "deflection"
 version = "0.1.10"
 description = "interstellar object tidal stream simulator and tooling"
 readme = "README.md"

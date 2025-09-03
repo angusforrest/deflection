@@ -1,12 +1,12 @@
 [project]
 name = "deflection"
-version = "0.1.10"
+version = "0.1.13"
 description = "interstellar object tidal stream simulator and tooling"
 readme = "README.md"
 authors = [
     { name = "angusforrest", email = "contact@angusforrest.com" }
 ]
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 dependencies = [
     "annotated-types>=0.7.0",
     "astropy>=7.1.0",

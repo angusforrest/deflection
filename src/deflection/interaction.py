@@ -2,7 +2,7 @@ import numpy as np
 
 from scipy.spatial import KDTree
 
-from typing import Literal, overload
+from typing import Literal, Tuple, overload
 from annotated_types import Annotated, Union, Ge
 
 # import pandas as pd
@@ -33,6 +33,32 @@ def close_distance(
     multiprocessing: bool = True,
 ) -> np.ndarray:
     pass
+
+
+@overload
+def close_distance(
+    positions: Tuple[np.ndarray, np.ndarray],
+    include_gmcs: bool = False,
+    num_distances: Annotated[int, Ge(1)] = 1,
+    upper_bound: Annotated[float, Ge(1)] = 1,
+    multiprocessing: bool = True,
+) -> Union[tuple[np.ndarray, np.ndarray], np.ndarray]:
+    iso_positions, gmc_positions = positions
+    if iso_positions.shape[1] != 3:
+        raise Exception("Did not provide iso position list with shape (,3)")
+    if gmc_positions.shape[1] != 3:
+        raise Exception("Did not provide gmc position list with shape (,3)")
+    tree = KDTree(gmc_positions)
+    dd, ii = tree.query(
+        iso_positions,
+        num_distances,
+        distance_upper_bound=upper_bound,
+        workers=-1 if multiprocessing else 1,
+    )
+    if include_gmcs:
+        return np.array(dd), np.array(ii)
+    else:
+        return np.array(dd)
 
 
 def close_distance(

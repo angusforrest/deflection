@@ -35,8 +35,7 @@ def close_distance(
     pass
 
 
-@overload
-def close_distance(
+def close_distance2(
     positions: Tuple[np.ndarray, np.ndarray],
     include_gmcs: bool = False,
     num_distances: Annotated[int, Ge(1)] = 1,
